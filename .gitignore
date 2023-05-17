@@ -4,3 +4,8 @@
 
 # Virtual Enviroment
 .venv
+
+# Cache Files
+.pytest_cache
+__pycache__
+*.pyc
