@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ton-engine"
+version = "0.1.0"
+description = "analytics engine"
+authors = ["Monireh Yousefi <yousefi7391@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "ton_engine"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
