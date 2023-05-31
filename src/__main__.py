@@ -1,5 +1,6 @@
 import click
 
+from ton_engine.data_source.base import DataSource
 from ton_engine.data_source.postgres_source import PostgresDataSource
 
 
