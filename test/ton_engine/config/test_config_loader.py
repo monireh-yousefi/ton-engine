@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from ton_engine.config.config_loader import UnsupportedFileFormatError, FileConfigLoader
+from ton_engine.config.file_config_loader import UnsupportedFileFormatError, FileConfigLoader
 
 
 def test_load_config_json():
