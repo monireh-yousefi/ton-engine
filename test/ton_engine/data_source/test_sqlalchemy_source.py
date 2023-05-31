@@ -1,18 +1,14 @@
 from unittest.mock import patch, Mock, MagicMock
 
-from ton_engine.data_source.postgres_source import PostgresDataSource
+from ton_engine.data_source.sqlalchemy_source import SqlAlchemyDataSource
 
 
 def test_setup():
-    data_source = PostgresDataSource(
-        host='localhost',
-        port=5432,
-        user='monireh',
-        password='p@ssword',
-        database='mydb',
+    data_source = SqlAlchemyDataSource(
+        url='postgresql+psycopg://monireh:p@ssword@localhost:5432/mydb',
     )
 
-    with patch('ton_engine.data_source.postgres_source.create_engine') as create_engine_mock:
+    with patch('ton_engine.data_source.sqlalchemy_source.create_engine') as create_engine_mock:
         create_engine_mock.return_value = Mock()
 
         data_source.setup()
@@ -22,12 +18,8 @@ def test_setup():
 
 
 def test_run_query():
-    data_source = PostgresDataSource(
-        host='localhost',
-        port=5432,
-        user='monireh',
-        password='p@ssword',
-        database='mydb',
+    data_source = SqlAlchemyDataSource(
+        url='postgresql+psycopg://monireh:p@ssword@localhost:5432/mydb',
     )
 
     expected_output = [('a', 'b'), ('c', 'd')]
@@ -39,7 +31,7 @@ def test_run_query():
     data_source._engine.connect = Mock(return_value=MagicMock())
     data_source._engine.connect.return_value.__enter__ = Mock(return_value=connection_mock)
 
-    with patch('ton_engine.data_source.postgres_source.text') as text_mock:
+    with patch('ton_engine.data_source.sqlalchemy_source.text') as text_mock:
         text_mock.return_value = Mock()
 
         output = data_source.run_query('select *')
@@ -50,12 +42,8 @@ def test_run_query():
 
 
 def test_teardown():
-    data_source = PostgresDataSource(
-        host='localhost',
-        port=5432,
-        user='monireh',
-        password='p@ssword',
-        database='mydb',
+    data_source = SqlAlchemyDataSource(
+        url='postgresql+psycopg://monireh:p@ssword@localhost:5432/mydb',
     )
     data_source._engine = Mock()
 
