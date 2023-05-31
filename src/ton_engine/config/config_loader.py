@@ -3,14 +3,18 @@ from pathlib import Path
 
 import yaml
 
+from ton_engine.config.base import ConfigLoader
+
 
 class UnsupportedFileFormatError(Exception):
     pass
 
 
-class ConfigLoader:
+class FileConfigLoader(ConfigLoader):
     def __init__(self, file_path: Path):
-        self.file_path = file_path
+        super().__init__(
+            file_path=file_path
+        )
 
     def load_config(self) -> dict:
         """Loads config from json and yaml files."""

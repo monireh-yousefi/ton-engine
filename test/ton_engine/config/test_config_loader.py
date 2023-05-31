@@ -2,11 +2,11 @@ from pathlib import Path
 
 import pytest
 
-from ton_engine.config.config_loader import ConfigLoader, UnsupportedFileFormatError
+from ton_engine.config.config_loader import UnsupportedFileFormatError, FileConfigLoader
 
 
 def test_load_config_json():
-    config_loader = ConfigLoader(
+    config_loader = FileConfigLoader(
         file_path=Path(__file__).parent / Path('data/sample.json')
     )
 
@@ -19,7 +19,7 @@ def test_load_config_json():
 
 
 def test_load_config_yaml():
-    config_loader = ConfigLoader(
+    config_loader = FileConfigLoader(
         file_path=Path(__file__).parent / Path('data/sample.yaml')
     )
 
@@ -32,7 +32,7 @@ def test_load_config_yaml():
 
 
 def test_load_config_unsupported_file_format_error():
-    config_loader = ConfigLoader(
+    config_loader = FileConfigLoader(
         file_path=Path(__file__).parent / Path('data/sample.xml')
     )
 
